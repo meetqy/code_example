@@ -1,6 +1,7 @@
 function initGlobalAPI (Vue: GlobalAPI) {
-  // config    只读属性
+  // core/config    只读属性
   Vue.config = {
+    // user
     optionMergeStrategies: Object.create(null),
     silent: false,
     productionTip: process.env.NODE_ENV !== 'production',
@@ -10,20 +11,26 @@ function initGlobalAPI (Vue: GlobalAPI) {
     warnHandler: null,
     ignoredElements: [],
     keyCodes: Object.create(null),
+
+    // platforms/web/runtime/index          
     isReservedTag: no,
     isReservedAttr: no,
     isUnknownElement: no,
     getTagNamespace: noop,
     parsePlatformTagName: identity,
     mustUseProp: no,
+
+    // private
     async: true,
+
+    // legacy
     _lifecycleHooks: LIFECYCLE_HOOKS
   }
 
 
   // 暴露的使用方法
   // 注意：这些不是公共API的一部分-避免依赖,除非你意识到风险。
-  // util/index'
+  // core/util/index'
   Vue.util = {
     warn,
     extend,
@@ -33,12 +40,12 @@ function initGlobalAPI (Vue: GlobalAPI) {
 
   
 
-  // observer/index  set
+  // core/observer/index  set
   Vue.set = function set (target: Array<any> | Object, key: any, val: any): any {
     return val
   }
 
-  // observer/index  del
+  // core/observer/index  del
   Vue.delete = function del (target: Array<any> | Object, key: any) {
   
   }
@@ -54,9 +61,17 @@ function initGlobalAPI (Vue: GlobalAPI) {
 
   Vue.options = {
     components: {
-      KeepAlive
+      // core/components/index
+      KeepAlive,
+      // platforms/web/runtime/directives/index
+      Transition,
+      TransitionGroup
     },
-    directives,
+    directives: {
+      // platforms/web/runtime/directives/index
+      show,
+      model
+    },
     filters,
     _base
   }
@@ -85,4 +100,15 @@ function initGlobalAPI (Vue: GlobalAPI) {
   }
 }
 
+
+Vue.prototype.$isServer;
+Vue.prototype.$ssrContext;
+Vue.FunctionalRenderContext;
 Vue.version = '__VERSION__'
+
+// platforms/web/runtime/index
+Vue.prototype.__patch__
+Vue.prototype.$mount = function() {}
+
+// platforms/web/entry-runtime-with-compiler
+Vue.compile = compileToFunctions
