@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+// 面馆
+class NoodleShop {
+  constructor(name) {
+    this.end(name);
+  }
+  // 烧水
+  shaoShui() {}
+
+  // 和面
+  huomian() {
+
+  }
+
+  // 制作完成
+  end(name) {
+    console.log(`${name}制作完成`);
+  }
+}
+
+function factory(name) {
+  return new NoodleShop(name);
+}
+
+factory('番茄面');
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src='./js/jquery.js'></script>
+</head>
+<body>
+  <script>
+    class Circle {
+      draw() {
+        console.log('画一个原型')
+      }
+    }
+
+    class Decorator {
+      constructor(circle) {
+        this.circle = circle;
+      }
+
+      draw() {
+        this.circle.draw();
+        this.setRedBorder(circle);
+      }
+
+      setRedBorder() {
+        console.log('设置一个红色边框！');
+      }
+    }
+
+    let circle = new Circle();
+    circle.draw();
+
+    let dec = new Decorator(circle);
+    dec.draw();
+
+  </script>
+</body>
+</html>  

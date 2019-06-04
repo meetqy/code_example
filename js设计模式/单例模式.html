@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单例模式</title>
+  <script src="./js/jquery.js"></script>
+</head>
+<body>
+  <script>
+    class User {
+      constructor() {
+        console.log('instanceof', this instanceof User);
+      }
+
+      login() {
+        console.log('login---------');
+      }
+    }
+
+    User.getUser = (function () {
+      let userInfo
+      return function() {
+        if(!userInfo) {
+          userInfo = new User();
+        }
+        return userInfo;
+      }
+    })()
+
+    let user1 = User.getUser();
+    user1.login();
+
+    let user2 = User.getUser();
+    user2.login();
+
+    // let user3 = new User();
+    // user3.login();
+
+
+    console.log('user1 === user2', user1 === user2);
+    // console.log('user2 === user3', user2 === user3);
+  </script>
+</body>
+</html>
