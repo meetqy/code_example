@@ -19,28 +19,29 @@
       }
     }
 
-    User.getUser = (function () {
+    const getUser = (function () {
       let userInfo
       return function() {
         if(!userInfo) {
           userInfo = new User();
         }
+        
         return userInfo;
       }
     })()
 
-    let user1 = User.getUser();
+    let user1 = getUser();
     user1.login();
 
-    let user2 = User.getUser();
+    let user2 = getUser();
     user2.login();
 
-    // let user3 = new User();
-    // user3.login();
+    let user3 = new User();
+    user3.login();
 
 
-    console.log('user1 === user2', user1 === user2);
-    // console.log('user2 === user3', user2 === user3);
+    console.log('user1 === user2', user1 === user2); // true
+    console.log('user2 === user3', user2 === user3); // false
   </script>
 </body>
 </html>
